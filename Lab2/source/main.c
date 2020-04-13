@@ -1,42 +1,61 @@
-/*Author: cdel034
- **  Partner(s) Name:
- **      Lab Section:
- **      Assignment: Lab #  Exercise #
- **      Exercise Description: [optional - include for your own benefit]
- **
- **      I acknowledge all content contained herein, excluding template or example
- **      code, is my own original work.
- **/
+/*Author: cel034
+**  Partner(s) Name:
+**      Lab Section:
+**      Assignment: Lab #  Exercise 
+**      Exercise Description: [optional - include for your own benefit
+**      I acknowledge all content contained herein, excluding template or example
+**      code, is my own original work.
+**/
 #include <avr/io.h>
 #ifdef _SIMULATE_
 #include "simAVRHeader.h"
 #endif
+   int main(void) {
 
-int main(void) {
+        DDRA = 0x00;
+        PORTA = 0xFF;
 
-        DDRA - 0x00;    //Configure port A's 8 pins to be inputs
-        PORTA = 0xFF;   //Haveing this to be output pins
+        DDRB = 0x00;
+        PORTB =0xFF;
 
-        DDRB = 0xFF;    //configure port B's 8 pins t be outputs
-        PORTB = 0x00;
+        DDRC = 0x00;
+        PORTC = 0xFF;
 
-        unsigned char doorSensor = 0x00;
-        unsigned char lightSensor= 0x00;
+        DDRD = 0xFF;
+        PORTD = 0x00;
 
-                doorSensor = PINA & 0x00; //Pin A bit 0 will have doorSensor
-                lightSensor = PINA & 0x01; //Pin A bit 1 will have lightSensor
+        unsigned char totalWeight = 0x00; //output
+        unsigned char seatOne = 0x00; //A
+        unsigned char seatTwo = 0x00; //B
+        unsigned char seatThree = 0x00; //C
+
+        unsigned char outputOne = 0x00;
+        unsigned char outputTwo = 0x00;
 
         while(1){
 
-                if( ((lightSensor == 0) && (doorSensor == 1)) )
-                {
-                        PORTB = 0x01; //PORTB will be outputing the value (writing)
-                }                        //PORTB will output a number either 1 or 0
-                else { PORTB =0x00; }
+                seatOne = PINA | 0x00 ;
+                seatTwo = PINB | 0x00;
+                seatThree = PINC | 0x00;
+                totalWeight = seatOne + seatTwo +seatThree;
+
+                if(totalWeight >= 140 ){
+                outputOne = 0x01;
+        }
+
+                else{outputOne = 0x00;}
+
+                if( ((seatOne - seatThree) > 80) || ((seatThree - seatOne) >80)  ){
+                outputTwo = 0x02;
+        }
+                else {outputTwo = 0x00 ;}
+
+                totalWeight = totalWeight & 0xFC;
+                PORTD = totalWeight + outputOne + outputTwo;
 
         }
 
-
     return 1;
 }
+
 

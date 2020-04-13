@@ -1,0 +1,7 @@
+test/initDebugger.gdb:12: Error in sourced command file:
+malformed linespec error: unexpected end of input
+======================================================
+Running all tests..."
+
+"PINA: 0x10, PINB: 0x01 => PORTC: 0x08"...test/tests.gdb:35: Error in sourced command file:
+Remote connection closed
