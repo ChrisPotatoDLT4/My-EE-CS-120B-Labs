@@ -1,4 +1,4 @@
-# Test file for "Lab3"
+# Test file for "Lab4"
 
 
 # commands.gdb provides the following functions for ease:
@@ -27,31 +27,18 @@ echo ======================================================\n
 echo Running all tests..."\n\n
 
 # Example test:
-test "PIND: 0x33, PINB: 0x08 => PORTB: 0x04"
+test "PINA: 0x00, PINB: 0x00 => PORTC: 0"
 # Set inputs
-setPIND 0x33
-setPINB 0x08
+setPINA 0x00
+setPINB 0x00
 # Continue for several ticks
 continue 2
 # Set expect values
-expectPORTB 0x04
+expectPORTC 0
 # Check pass/fail
 checkResult
 
 # Add tests below
-test "PIND: 0x23 , PINB: 0x00 => PORTB: 0x02"
-setPIND 0x23
-setPINB 0x00
-continue 2
-expectPORTB 0x02
-checkResult
-
-test "PIND: 0xE2, PINB:0x4 => PORTB: 0x02"
-setPIND 0xE2
-setPINB 0x04
-continue 2
-expectPORTB 0x02
-checkResult
 
 # Report on how many tests passed/tests ran
 set $passed=$tests-$failed

@@ -1,7 +1,10 @@
-test/initDebugger.gdb:12: Error in sourced command file:
-malformed linespec error: unexpected end of input
+Breakpoint 1 at 0x14a: file source/main.c, line 29.
+Note: automatically using hardware breakpoints for read-only addresses.
 ======================================================
 Running all tests..."
 
-"PINA: 0x10, PINB: 0x01 => PORTC: 0x08"...test/tests.gdb:35: Error in sourced command file:
-Remote connection closed
+"PIND: 0x33, PINB: 0x08 => PORTB: 0x04"..."PIND: 0x23 , PINB: 0x00 => PORTB: 0x02"...
+	Expected 0x02 
+	PORTB '0x800025:	0x04
+"PIND: 0xE2, PINB:0x4 => PORTB: 0x02"...======================================================
+Quitting: Remote doesn't know how to detach
